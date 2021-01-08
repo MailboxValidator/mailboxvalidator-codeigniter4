@@ -67,13 +67,13 @@ Performs email validation on the supplied email address.
 
 
 
-#### is_email_disposable (email_address)
+#### isDisposableEmail (email_address)
 
 Check whether the email address is belongs to a disposable email provider or not. Return Values: True, False
 
 
 
-#### is_email_free (email_address)
+#### isFreeEmail (email_address)
 
 Check whether the email address is belongs to a free email provider or not. Return Values: True, False
 
