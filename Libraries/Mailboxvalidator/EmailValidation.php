@@ -34,7 +34,7 @@ class EmailValidation
             $results = file_get_contents($this->singleValidationApiUrl . '?' . $params);
             
             if ($results !== false) {
-                return json_decode($results);
+                return json_decode($results, true);
             }
             else {
                 return null;
