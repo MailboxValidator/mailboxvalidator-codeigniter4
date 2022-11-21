@@ -13,6 +13,9 @@ class Mailboxvalidator {
     public function getSingleResult($email) {
         if ($email != ''){
             $result = $this->mbv->validateEmail($email);
+            return $result;
+        } else {
+            return array('error' => 'Email cannot be empty!');
         }
     }
 
