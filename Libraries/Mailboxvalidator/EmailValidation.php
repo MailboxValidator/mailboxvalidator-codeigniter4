@@ -4,9 +4,9 @@ namespace MailboxValidator;
 class EmailValidation
 {
     private $apiKey = '';
-    private $singleValidationApiUrl = 'https://api.mailboxvalidator.com/v1/validation/single';
-    private $disposableEmailApiUrl = 'https://api.mailboxvalidator.com/v1/email/disposable';
-    private $freeEmailApiUrl = 'https://api.mailboxvalidator.com/v1/email/free';
+    private $singleValidationApiUrl = 'https://api.mailboxvalidator.com/v2/validation/single';
+    private $disposableEmailApiUrl = 'https://api.mailboxvalidator.com/v2/email/disposable';
+    private $freeEmailApiUrl = 'https://api.mailboxvalidator.com/v2/email/free';
     
     public function __construct($key)
 	{
@@ -17,6 +17,33 @@ class EmailValidation
 	{
     
     }
+	
+	/*
+	* Custom wrapper function for CURL
+	*/
+	public function curl($url) {
+		// Initialize cURL session
+		$ch = curl_init();
+		
+		// Set cURL options
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); // Return the response as a string instead of outputting it
+		curl_setopt($ch, CURLOPT_FAILONERROR, 0);
+
+		// Execute cURL session and store the response in a variable
+		$response = curl_exec($ch);
+
+		// Check for cURL errors
+		if (curl_errno($ch)) {
+			// echo 'cURL Error: ' . curl_error($ch);
+			return null;
+		}
+
+		// Close cURL session
+		curl_close($ch);
+		
+		return $response;
+	}
     
     /*
     * Validate whether an email address is a valid email or not.
@@ -31,7 +58,7 @@ class EmailValidation
             }
             $params = implode('&', $params2);
             
-            $results = file_get_contents($this->singleValidationApiUrl . '?' . $params);
+            $results = $this->curl($this->singleValidationApiUrl . '?' . $params);
             
             if ($results !== false) {
                 return json_decode($results, true);
@@ -57,7 +84,7 @@ class EmailValidation
             }
             $params = implode('&', $params2);
             
-            $results = file_get_contents($this->disposableEmailApiUrl . '?' . $params);
+            $results = $this->curl($this->disposableEmailApiUrl . '?' . $params);
             
             if ($results !== false) {
                 return json_decode($results);
@@ -83,7 +110,7 @@ class EmailValidation
             }
             $params = implode('&', $params2);
             
-            $results = file_get_contents($this->freeEmailApiUrl . '?' . $params);
+            $results = $this->curl($this->freeEmailApiUrl . '?' . $params);
             
             if ($results !== false) {
                 return json_decode($results);
