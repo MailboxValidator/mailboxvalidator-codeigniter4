@@ -201,15 +201,15 @@ You can refer the full list of response parameters at above table.
 
 | error_code | error_message         |
 | ---------- | --------------------- |
-| 100        | Missing parameter.    |
-| 101        | API key not found.    |
-| 102        | API key disabled.     |
-| 103        | API key expired.      |
-| 104        | Insufficient credits. |
-| 105        | Unknown error.        |
+| 10000        | Missing parameter.    |
+| 10001        | API key not found.    |
+| 10002        | API key disabled.     |
+| 10003        | API key expired.      |
+| 10004        | Insufficient credits. |
+| 10005        | Unknown error.        |
 
 
 
 ## Copyright
 
-Copyright (C) 2021 by MailboxValidator.com, support@mailboxvalidator.com
+Copyright (C) 2023 by MailboxValidator.com, support@mailboxvalidator.com
