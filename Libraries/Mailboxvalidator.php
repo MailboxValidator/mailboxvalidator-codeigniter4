@@ -41,13 +41,18 @@ class Mailboxvalidator {
     public function isFreeEmail($email) {
         if ($email != ''){
             $result = $this->mbv->isFreeEmail($email);
-            if ($result != false && $result->error_code == '') {
-                if ($result->is_free == 'True') {
-                    return true;
-                } else {
+            if ($result != false && (!property_exists($result, 'error')) ) {
+                if (property_exists($result, 'is_free')) {
+					if ($result->is_free) {
+						return true;
+					}
+				} else {
                     return false;
                 }
             } else {
+				if (property_exists($result, 'error')) {
+					throw new \Exception(__CLASS__ . ': ' . $result->error->error_message, $result->error->error_code);
+				}
                 // log_message('error', 'MBV API Error: ' . $result->error_code .'-' . $result->error_message);
                 return false;
             }
@@ -59,14 +64,19 @@ class Mailboxvalidator {
     public function isDisposableEmail($email) {
         if ($email != ''){
             $result = $this->mbv->isDisposableEmail($email);
-            if ($result != false && $result->error_code == '') {
-                if ($result->is_disposable == 'True') {
-                    return true;
-                } else {
+            if ($result != false && (!property_exists($result, 'error')) ) {
+                if (property_exists($result, 'is_disposable')) {
+					if ($result->is_disposable) {
+						return true;
+					}
+				} else {
                     return false;
                 }
             } else {
                 // log_message('error', 'MBV API Error: ' . $result->error_code .'-' . $result->error_message);
+				if (property_exists($result, 'error')) {
+					throw new \Exception(__CLASS__ . ': ' . $result->error->error_message, $result->error->error_code);
+				}
                 return false;
             }
         } else {
