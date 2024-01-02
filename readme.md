@@ -212,4 +212,4 @@ You can refer the full list of response parameters at above table.
 
 ## Copyright
 
-Copyright (C) 2023 by MailboxValidator.com, support@mailboxvalidator.com
+Copyright (C) 2024 by MailboxValidator.com, support@mailboxvalidator.com
