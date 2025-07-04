@@ -191,8 +191,9 @@ echo view('result', $result);
 ```
 And then in your view file, call the validation results. For example:
 ```php
-<?= esc($email_address); ?>
-<?= esc($status); ?>
+<?= esc($email_address) ?>
+<?= esc($mailboxvalidator_score) ?>
+<?= boolval($status) ? 'Yes' : 'No' ?>
 ```
 You can refer the full list of response parameters at above table.
 
