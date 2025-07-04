@@ -9,6 +9,7 @@ This package can be useful in many types of projects, for example
  - to perform fraud check
  - and so on
 
+*Tested up to CodeIgniter 4.6.1 and PHP 8.4.*
 
 
 ## Installation
